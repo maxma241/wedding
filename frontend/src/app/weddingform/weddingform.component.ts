@@ -102,7 +102,12 @@ export class WeddingformComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    document.removeChild(this._reCaptchaElement);
+    try {
+      document.body.removeChild(this._reCaptchaElement);
+    } catch (error) {
+      console.error('remove recaptcha script faild');
+      console.error(error);
+    }
   }
 
   async loadGoogleReCAPTCHA() {
@@ -173,6 +178,10 @@ export class WeddingformComponent implements OnInit {
   checkValid(v) {
     const fc = this.weddingForm.get(v);
     return (fc.invalid) && (fc.dirty || fc.touched);
+  }
+
+  testRoute() {
+    this._router.navigate(['/tks']);
   }
 
 }
