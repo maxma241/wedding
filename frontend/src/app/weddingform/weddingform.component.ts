@@ -49,6 +49,9 @@ export class WeddingformComponent implements OnInit {
     way: ['', Validators.required],
   });
 
+  get reCaptchaKey() {
+    return this._googleReCaptcha.key;
+  }
 
   submitForm(): void {
     Object.keys(this.weddingForm.controls).forEach(key => {
